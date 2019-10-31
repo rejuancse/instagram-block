@@ -1,0 +1,31 @@
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+/**
+ * #.# Styles
+ *
+ * CSS for both Frontend+Backend.
+ */
+.qubely-insblock-for-gutenberg {
+  display: inline-block;
+  width: 100%; }
+  .qubely-insblock-for-gutenberg .qubely-insblock-row {
+    margin: -15px;
+    display: inline-block; }
+    .qubely-insblock-for-gutenberg .qubely-insblock-row .instagram-image {
+      padding: 15px;
+      float: left;
+      line-height: 0; }
+    .qubely-insblock-for-gutenberg .qubely-insblock-row .qubely-col-2 {
+      width: 50%; }
+    .qubely-insblock-for-gutenberg .qubely-insblock-row .qubely-col-3 {
+      width: 33.33%; }
+    .qubely-insblock-for-gutenberg .qubely-insblock-row .qubely-col-4 {
+      width: 25%; }
+    .qubely-insblock-for-gutenberg .qubely-insblock-row .qubely-col-5 {
+      width: 20%; }
+    .qubely-insblock-for-gutenberg .qubely-insblock-row .qubely-col-6 {
+      width: 16.66%; }
