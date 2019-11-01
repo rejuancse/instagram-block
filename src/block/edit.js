@@ -160,6 +160,18 @@ export default class InstagramEdit extends Component {
                                     return (
                                         <div className={`instagram-image qubely-col-${numberCols} ${hasEqualImages ? 'has-equal-images' : ''}`} key={ photo.id } >
                                             <img className="qubely-instagram-image" src={ photo.images.standard_resolution.url } />
+
+											<div className="image-overlay">
+												<li className="likes-count">
+													<span class="dashicons dashicons-heart"></span>
+													{photo.likes.count}
+												</li>
+												<li className="comments-count">
+													<span class="dashicons dashicons-admin-comments"></span>
+													{photo.comments.count}
+												</li>
+											</div>
+
                                         </div>
                                     );
                                 } ) 

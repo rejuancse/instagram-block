@@ -15,7 +15,7 @@ function qubelyinsblock_register_block() {
 					),
 					'token' => array(
 							'type' 		=> 'string',
-							'default' => ''
+			 				'default' => ''
 					),
 					'hasEqualImages' => array(
 						'type' 		=> 'boolean',
@@ -67,7 +67,7 @@ function qubelyinsblock_render_callback( array $attributes ){
 			'numberImages'    => 4,
 			'gridGap'         => 0,
 			'showProfile'     => false,
-			'className'       => '',
+			'class'       => '',
 		]
 	);
 	$token          = $attributes[ 'token' ]  ;
@@ -92,7 +92,7 @@ function qubelyinsblock_render_callback( array $attributes ){
     $profile = $profileContainer = '';
     $output = '';
 
-	$output .= '<div class="qubely-insblock-for-gutenberg '.$attributes['className'].'">';
+	$output .= '<div class="qubely-insblock-for-gutenberg '.$attributes['class'].'">';
     $output .= '<div class="qubely-insblock-row">';
     
         if($showProfile) {
@@ -110,11 +110,25 @@ function qubelyinsblock_render_callback( array $attributes ){
 
         if( is_array($thumbs) ) {
             foreach( $thumbs as $thumb ) {
+
+
                 $image = esc_attr($thumb->images->standard_resolution->url);
                 $output .= '<div class="instagram-image qubely-col-'.esc_attr($numberCols).'">';
                     $output .= '<a class="qubely-insblock-image-wrapper '.$hasEqualImages.'" href="'.esc_attr($thumb->link).'" target="_blank">';
-                        $output .= '<img class="qubely-instagram-image" key="'.esc_attr($thumb->id).'" src="'.$image.'" />';
-                    $output .= '</a>';
+						$output .= '<img class="qubely-instagram-image" key="'.esc_attr($thumb->id).'" src="'.$image.'" />';
+					
+						$output .= '<div class="image-overlay">';
+							$output .= '<li class="likes-count">';
+								$output .= '<span class="dashicons dashicons-heart"></span>';
+								$output .= '<span>'.$thumb->likes->count.'</span>';
+							$output .= '</li>';
+							$output .= '<li class="comments-count">';
+								$output .= '<span class="dashicons dashicons-admin-comments"></span>';
+								$output .= '<span>'.$thumb->comments->count.'</span>';
+							$output .= '</li>';
+						$output .= '</div>';
+
+					$output .= '</a>';
                 $output .= '</div>';
             }
         }
