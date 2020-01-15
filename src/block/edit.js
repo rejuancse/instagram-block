@@ -198,7 +198,7 @@ export default class InstagramEdit extends Component {
 						<TextControl
 							label={ __( 'Instagram Access Token' ) }
 							value={ token }
-                            help={`To get your token use this link https://outofthesandbox.com/pages/instagram-access-token` }
+                            help={`To get token link https://outofthesandbox.com/pages/instagram-access-token` }
 							onChange={ this.onChangeToken }
 						/>
 					</PanelBody>

@@ -1,14 +1,13 @@
 <?php
 /**
- * Plugin Name: Qubely Insblock
- * Description: Qubely Insblock is a Gutenberg plugin created via Instagram block.
- * Author: Themeum
- * Author URI: https://themeum.com/
+ * Plugin Name: Gutenberg Instagram block
+ * Description: Gutenberg Instagram block is created Instagram block.
+ * Author: Rejuan Ahamed
  * Version: 1.0.0
  * License: GPL2+
  * License URI: https://www.gnu.org/licenses/gpl-2.0.txt
  *
- * @package Qubely Insblock
+ * @package Instagram block
  */
 
 # Exit if accessed directly.
