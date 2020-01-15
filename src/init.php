@@ -12,33 +12,33 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'QUBELY_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
+define( 'INSBLOCK_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 
-function qubelyinsblock_block_assets() {
+function insblockinsblock_block_assets() {
 	wp_enqueue_style(
-		'qubelyinsblock-style-css',
+		'insblockinsblock-style-css',
 		plugins_url( 'dist/blocks.style.build.css', dirname( __FILE__ ) ),
 		array( 'wp-editor' )
 	);
 } 
-add_action( 'enqueue_block_assets', 'qubelyinsblock_block_assets' );
+add_action( 'enqueue_block_assets', 'insblockinsblock_block_assets' );
 
-function qubelyinsblock_editor_assets() {
+function insblockinsblock_editor_assets() {
 	wp_enqueue_script(
-		'qubelyinsblock-block-js',
+		'insblockinsblock-block-js',
 		plugins_url( '/dist/blocks.build.js', dirname( __FILE__ ) ),
 		array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor' ),
 		true 
 	);
 
 	wp_enqueue_style(
-		'qubelyinsblock-block-editor-css',
+		'insblockinsblock-block-editor-css',
 		plugins_url( 'dist/blocks.editor.build.css', dirname( __FILE__ ) ),
 		array( 'wp-edit-blocks' ) 
 	);
 }
-add_action( 'enqueue_block_editor_assets', 'qubelyinsblock_editor_assets' );
+add_action( 'enqueue_block_editor_assets', 'insblockinsblock_editor_assets' );
 
 
-require_once( QUBELY_PLUGIN_PATH . './qubely-insblock.php' );
+require_once( INSBLOCK_PLUGIN_PATH . './insblock-insblock.php' );
 

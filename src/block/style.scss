@@ -1,12 +1,12 @@
-.qubely-instagramfeed-row {
+.insblock-instagramfeed-row {
     display: inline-block;
-    
-    .qubely-instagram-profile-bio-container {
+
+    .insblock-instagram-profile-bio-container {
         display: inline-block;
         width: 100%;
         position: relative;
         margin-bottom: 100px;
-        .qubely-instagram-profile-image {
+        .insblock-instagram-profile-image {
             width: 30%;
             float: left;
             text-align: center;
@@ -14,17 +14,17 @@
                 border-radius: 50%;
             }
         }
-        .qubely-instagram-profile-bio-info {
+        .insblock-instagram-profile-bio-info {
             width: 70%;
             display: inline-block;
 
-            .qubely-instagram-bio {
-                a.qubely-follow {
+            .insblock-instagram-bio {
+                a.insblock-follow {
                     display: inline-block;
                     margin-right: 40px;
                     text-decoration: none;
                     line-height: 28px;
-                    .qubely-instagram-follow {
+                    .insblock-instagram-follow {
                         border: 1px solid transparent;
                         background-color: #3897f0;
                         box-sizing: border-box;
@@ -39,18 +39,18 @@
                         line-height: 18px;
                     }
                 }
-                .qubely-instagram-username {
+                .insblock-instagram-username {
                     font-size: 28px;
                     line-height: 32px;
                     margin: 0;
                     font-weight: 300;
                     color: #262626;
                 }
-                .qubely-instagram-username:before {
+                .insblock-instagram-username:before {
                     display: none;
                 }
             }
-            .qubely-instagram-notifications{
+            .insblock-instagram-notifications{
                 padding: 0;
                 margin: 12px 0;
                 li {
@@ -59,22 +59,22 @@
                     margin-right: 40px;
                     font-family: 'Roboto',sans-serif;
                     font-weight: 400;
-                    span.qubely-post-number {
+                    span.insblock-post-number {
                         font-weight: 700;
                     }
-                    a.qubely-followers {
+                    a.insblock-followers {
                         text-decoration: none;
                     }
                 }
             } 
-            .qubely-instagram-profile-name span {
+            .insblock-instagram-profile-name span {
                 display: block;
                 font-size: 16px;
                 font-family: 'Roboto',sans-serif;
             }
         }
     }
-    .qubely-instagram-profile-bio-container:before {
+    .insblock-instagram-profile-bio-container:before {
         content: "";
         width: 100%;
         height: 1px;
@@ -83,67 +83,67 @@
         position: absolute;
         left: 0;
     }
-    .qubely-instagram-image {
+    .insblock-instagram-image {
         float: left;
         line-height: 0;
     }
-    .qubely-col-2 {
+    .insblock-col-2 {
         width: 50%;
     }
-    .qubely-col-3 {
+    .insblock-col-3 {
         width: 33.33%;
     }
-    .qubely-col-4 {
+    .insblock-col-4 {
         width: 25%;
     }
 
-    .qubely-instagram-image {
-        .qubely-instagram-image-wrap {
+    .insblock-instagram-image {
+        .insblock-instagram-image-wrap {
             position: relative;
             overflow: hidden;
             img {
                 transition: .3s;
             }
         }
-        .qubely-post-img-zoom-out {
+        .insblock-post-img-zoom-out {
             img {
                 transition: transform 0.35s;
                 transform: scale(1.2);
             }
         }
-        .qubely-post-img-zoom-in {
+        .insblock-post-img-zoom-in {
             img {
             transition: transform 0.35s;
             transform: scale(1);
             }
         }
-        .qubely-post-img-slide-bottom {
+        .insblock-post-img-slide-bottom {
             img {
             transition: transform 0.35s;
             transform: translate3d(0, 20px, 0) scale3d(1.2, 1.2, 1);
             }
         }
-        .qubely-post-img-slide-top {
+        .insblock-post-img-slide-top {
             img {
             transition: transform 0.35s;
             transform: translate3d(0, -20px, 0) scale3d(1.2, 1.2, 1);
             }
         }
-        .qubely-post-img-slide-right {
+        .insblock-post-img-slide-right {
             img {
             transition: transform 0.35s;
             transform: translate3d(20px, 0, 0) scale3d(1.2, 1.2, 1);
             }
         }
-        .qubely-post-img-slide-left {
+        .insblock-post-img-slide-left {
             img {
             transition: transform 0.35s;
             transform: translate3d(-20px, 0, 0) scale3d(1.2, 1.2, 1);
             }
         }
     }
-    .qubely-instagram-image.equal-images {
-        .qubely-instagram-image-wrap {
+    .insblock-instagram-image.equal-images {
+        .insblock-instagram-image-wrap {
             height: 330px;
             img {
                 object-fit: cover;
@@ -152,43 +152,43 @@
             }
         }
     }
-    .qubely-instagram-image:hover{
-        .qubely-image-overlay {
+    .insblock-instagram-image:hover{
+        .insblock-image-overlay {
             background: rgba(0, 0, 0, 0.30);
             opacity: 1;
         }
-        .qubely-post-img-zoom-out {
+        .insblock-post-img-zoom-out {
             img {
                 transform: scale(1);
             }
         }
-        .qubely-post-img-zoom-in {
+        .insblock-post-img-zoom-in {
             img {
                 transform: scale(1.2);
             }
         }
-        .qubely-post-img-slide-bottom {
+        .insblock-post-img-slide-bottom {
             img {
                 transform: translate3d(0, 0px, 0) scale3d(1.2, 1.2, 1);
             }
         }
-        .qubely-post-img-slide-top {
+        .insblock-post-img-slide-top {
             img {
                 transform: translate3d(0, 0px, 0) scale3d(1.2, 1.2, 1);
             }
         }
-        .qubely-post-img-slide-right {
+        .insblock-post-img-slide-right {
             img {
                 transform: translate3d(0, 0, 0) scale3d(1.2, 1.2, 1);
             }
         }
-        .qubely-post-img-slide-left {
+        .insblock-post-img-slide-left {
             img {
                 transform: translate3d(0, 0, 0) scale3d(1.2, 1.2, 1);
             }
         }
     }
-    .qubely-image-overlay {
+    .insblock-image-overlay {
         position: absolute;
         top: 0;
         width: 100%;
@@ -206,11 +206,11 @@
             left: 50%;
             padding: 0 46px;
             margin: 0;
-            li.qubely-listing {
+            li.insblock-listing {
                 display: inline-block;
                 padding: 0 12px;
                 line-height: 20px;
-                span.qubely-count {
+                span.insblock-count {
                     line-height: 20px;
                     padding: 0 5px;
                     font-weight: 700;
@@ -218,7 +218,7 @@
                 }
                 
             } 
-            li.qubely-caption {
+            li.insblock-caption {
                 line-height: 20px;
                 margin-top: 15px;
                 display: block;

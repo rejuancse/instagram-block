@@ -133,28 +133,28 @@ export default class InstagramEdit extends Component {
 
         profileImage = (showProfile) ? (
 			((profile != undefined) ? (
-				<div className="qubely-instagram-profile-bio-container">
-					<div className="qubely-instagram-profile-image">
+				<div className="insblock-instagram-profile-bio-container">
+					<div className="insblock-instagram-profile-image">
 						<img className="instagram-profile-image" src={ profile.profile_picture } alt={ profile.full_name }/>
 					</div>
-					<div className="qubely-instagram-profile-bio-info">
-						<div className="qubely-instagram-bio">
-							<h1 className="qubely-instagram-username">{ profile.username }</h1>
+					<div className="insblock-instagram-profile-bio-info">
+						<div className="insblock-instagram-bio">
+							<h1 className="insblock-instagram-username">{ profile.username }</h1>
 						</div>
-						<ul className="qubely-instagram-notifications">
+						<ul className="insblock-instagram-notifications">
 							<li>
-								<span className="qubely-instagram-post-count"><span className="qubely-post-number">{profile.counts.media}</span> posts</span>
+								<span className="insblock-instagram-post-count"><span className="insblock-post-number">{profile.counts.media}</span> posts</span>
 							</li>
 							<li>
-								<a className="qubely-followers" href="#">
-									<span className="qubely-followers-count" title={profile.counts.follows}>{profile.counts.follows}</span> followers</a>
+								<a className="insblock-followers" href="#">
+									<span className="insblock-followers-count" title={profile.counts.follows}>{profile.counts.follows}</span> followers</a>
 								</li>
 							<li>
-								<a className="qubely-followers" href="#">
-									<span className="qubely-followers-count">{profile.counts.followed_by}</span>following</a>
+								<a className="insblock-followers" href="#">
+									<span className="insblock-followers-count">{profile.counts.followed_by}</span>following</a>
 							</li>
 						</ul>
-						<div className="qubely-instagram-profile-name">
+						<div className="insblock-instagram-profile-name">
 							<span className="profile-name">{ profile.full_name }</span>
 							<span className="profile-bio">{ profile.bio }</span>
 							<span className="profile-bio">{ profile.website }</span>
@@ -176,34 +176,34 @@ export default class InstagramEdit extends Component {
             } else {
                 instagramImagerender = (
 					
-					<div className={`qubely-instagramfeed-wrap`}>
-                        <div className="qubely-instagramfeed-row">
+					<div className={`insblock-instagramfeed-wrap`}>
+                        <div className="insblock-instagramfeed-row">
 
                             { profileImage }
 
                             { thumbs &&
                                 thumbs.map( photo => {
                                     return (
-                                        <div className={`qubely-instagram-image qubely-col-${numberCols} ${hasEqualImages ? 'has-equal-images' : ''}`} key={ photo.id } >  
-											<div className={`qubely-instagram-image-wrap`}>
+                                        <div className={`insblock-instagram-image insblock-col-${numberCols} ${hasEqualImages ? 'has-equal-images' : ''}`} key={ photo.id } >  
+											<div className={`insblock-instagram-image-wrap`}>
 												<img src={ photo.images.standard_resolution.url } />
-												<div className="qubely-image-overlay">
+												<div className="insblock-image-overlay">
 													<ul>
 														{photo.likes != null && 
-															<li className="qubely-listing">
+															<li className="insblock-listing">
 																<span className="dashicons dashicons-heart"></span>
-																<span className="qubely-count qubely-like-count">{photo.likes.count}</span>
+																<span className="insblock-count insblock-like-count">{photo.likes.count}</span>
 															</li>
 														}
 														{photo.comments != null && 
-															<li className="qubely-listing">
+															<li className="insblock-listing">
 																<span className="dashicons dashicons-admin-comments"></span>
-																<span className="qubely-count qubely-comments-count">{photo.comments.count}</span>
+																<span className="insblock-count insblock-comments-count">{photo.comments.count}</span>
 															</li>
 														}
 
 														{photo.caption != null && 
-															<li className="qubely-caption">
+															<li className="insblock-caption">
 																{photo.caption != null && 
 																	<p className="caption-title">{photo.caption.text}</p>
 																}
