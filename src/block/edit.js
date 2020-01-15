@@ -125,18 +125,43 @@ export default class InstagramEdit extends Component {
         const { apiResponseCode, apiErrorMessage, loading } = this.state;
         
         let instagramImagerender;
-        let profileImage;
+		let profileImage;
+		
+		if( profile != undefined ){
+			console.log('InsProfile', profile.counts.follows);
+		}
 
         profileImage = (showProfile) ? (
-            <div className="qubely-instagran-profile">
-                <div className="qubely-instagram-profile-image">
-                    <img className="instagram-profile-image" src={ profile.profile_picture } alt={ profile.full_name }/>
-                </div>
-                <div className="qubely-insblock-bio-container">
-                    <h3>{ profile.full_name }</h3>
-                    <p>{ profile.bio }</p>
-                </div>
-            </div>
+			((profile != undefined) ? (
+				<div className="qubely-instagram-profile-bio-container">
+					<div className="qubely-instagram-profile-image">
+						<img className="instagram-profile-image" src={ profile.profile_picture } alt={ profile.full_name }/>
+					</div>
+					<div className="qubely-instagram-profile-bio-info">
+						<div className="qubely-instagram-bio">
+							<h1 className="qubely-instagram-username">{ profile.username }</h1>
+						</div>
+						<ul className="qubely-instagram-notifications">
+							<li>
+								<span className="qubely-instagram-post-count"><span className="qubely-post-number">{profile.counts.media}</span> posts</span>
+							</li>
+							<li>
+								<a className="qubely-followers" href="#">
+									<span className="qubely-followers-count" title={profile.counts.follows}>{profile.counts.follows}</span> followers</a>
+								</li>
+							<li>
+								<a className="qubely-followers" href="#">
+									<span className="qubely-followers-count">{profile.counts.followed_by}</span>following</a>
+							</li>
+						</ul>
+						<div className="qubely-instagram-profile-name">
+							<span className="profile-name">{ profile.full_name }</span>
+							<span className="profile-bio">{ profile.bio }</span>
+							<span className="profile-bio">{ profile.website }</span>
+						</div>
+					</div>
+				</div>
+			) : '')
         ) : '';
 
 
@@ -150,34 +175,51 @@ export default class InstagramEdit extends Component {
                 );
             } else {
                 instagramImagerender = (
-                    <div className="qubely-insblock-for-gutenberg">
-                        <div className="qubely-insblock-row">
+					
+					<div className={`qubely-instagramfeed-wrap`}>
+                        <div className="qubely-instagramfeed-row">
 
                             { profileImage }
 
                             { thumbs &&
                                 thumbs.map( photo => {
                                     return (
-                                        <div className={`instagram-image qubely-col-${numberCols} ${hasEqualImages ? 'has-equal-images' : ''}`} key={ photo.id } >
-                                            <img className="qubely-instagram-image" src={ photo.images.standard_resolution.url } />
+                                        <div className={`qubely-instagram-image qubely-col-${numberCols} ${hasEqualImages ? 'has-equal-images' : ''}`} key={ photo.id } >  
+											<div className={`qubely-instagram-image-wrap`}>
+												<img src={ photo.images.standard_resolution.url } />
+												<div className="qubely-image-overlay">
+													<ul>
+														{photo.likes != null && 
+															<li className="qubely-listing">
+																<span className="dashicons dashicons-heart"></span>
+																<span className="qubely-count qubely-like-count">{photo.likes.count}</span>
+															</li>
+														}
+														{photo.comments != null && 
+															<li className="qubely-listing">
+																<span className="dashicons dashicons-admin-comments"></span>
+																<span className="qubely-count qubely-comments-count">{photo.comments.count}</span>
+															</li>
+														}
 
-											<div className="image-overlay">
-												<li className="likes-count">
-													<span class="dashicons dashicons-heart"></span>
-													{photo.likes.count}
-												</li>
-												<li className="comments-count">
-													<span class="dashicons dashicons-admin-comments"></span>
-													{photo.comments.count}
-												</li>
+														{photo.caption != null && 
+															<li className="qubely-caption">
+																{photo.caption != null && 
+																	<p className="caption-title">{photo.caption.text}</p>
+																}
+															</li>
+														}
+														
+													</ul>
+												</div>
 											</div>
-
                                         </div>
                                     );
                                 } ) 
                             }
                         </div>
                     </div>
+
                 );
             }
         } else if ( apiResponseCode !== 200 ) {

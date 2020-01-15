@@ -1,5 +1,5 @@
 /**
- * BLOCK: qubely-insblock
+ * BLOCK: Gutenberg Insblock
  *
  * Registering a basic block with Gutenberg.
  * Simple block, renders and saves the same content without any interactivity.
@@ -12,16 +12,15 @@ import './style.scss';
 const { __ } = wp.i18n;
 const { registerBlockType } = wp.blocks;
 
-import { attributes } from './attributes';
 import { default as edit } from './edit';
 
-registerBlockType( 'qubelyinsblock/block-qubely-insblock', {
-	title: __( 'Qubely Insblock' ),
+registerBlockType( 'insblock/gutenberg-insblock', {
+	title: __( 'Gutenberg Insblock' ),
 	icon: 'shield', 
 	category: 'common',
-	attributes,
+
 	edit,
-	save( { attributes, className } ) {
+	save: function( props ) {
 		return null;
-	},
+	}
 } );

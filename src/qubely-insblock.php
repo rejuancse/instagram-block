@@ -1,44 +1,43 @@
 <?php
-function qubelyinsblock_register_block() {
+function insblock_register_block() {
 
 	// Only load if Gutenberg is available.
 	if ( ! function_exists( 'register_block_type' ) ) {
 		return;
 	}
 
-	register_block_type('qubelyinsblock/block-qubely-insblock', array(
-		'render_callback' => 'qubelyinsblock_render_callback',
+	register_block_type('insblock/gutenberg-insblock', array(
+		'render_callback' => 'insblock_render_callback',
 			'attributes' => array(
-					'numberCols' => array(
-						'type' 		=> 'number',
-						'default'	=> '4' // nb: a default is needed!
-					),
-					'token' => array(
-							'type' 		=> 'string',
-			 				'default' => ''
-					),
-					'hasEqualImages' => array(
-						'type' 		=> 'boolean',
-						'default' => false
-					),
-					'numberImages' => array(
-						'type' 		=> 'number',
-						'default' => 4
-					),
-					'gridGap' => array(
-						'type' 		=> 'number',
-						'default'	=> 0
-					),
-					'showProfile'	=> array(
-						'type'		=> 'boolean',
-						'default'	=> false
-					),
-					
+				'numberCols' => array(
+					'type' 		=> 'number',
+					'default'	=> '4' // nb: a default is needed!
+				),
+				'token' => array(
+						'type' 		=> 'string',
+						'default' => ''
+				),
+				'hasEqualImages' => array(
+					'type' 		=> 'boolean',
+					'default' => false
+				),
+				'numberImages' => array(
+					'type' 		=> 'number',
+					'default' => 4
+				),
+				'gridGap' => array(
+					'type' 		=> 'number',
+					'default'	=> 0
+				),
+				'showProfile'	=> array(
+					'type'		=> 'boolean',
+					'default'	=> false
+				),	
 			)
 		)
 	);
 }
-add_action('init', 'qubelyinsblock_register_block');
+add_action('init', 'insblock_register_block');
 
 
 function qubelyinsblock_fetchData($url) {
@@ -58,7 +57,7 @@ function qubelyinsblock_get_from_cache( $suffix = '' ) {
 	return get_transient( 'qubelyinsblock-api_'.$suffix );
 }
 
-function qubelyinsblock_render_callback( array $attributes ){
+function insblock_render_callback( array $attributes ){
 	$attributes = wp_parse_args(
 		$attributes,
 		[
@@ -92,48 +91,95 @@ function qubelyinsblock_render_callback( array $attributes ){
     $profile = $profileContainer = '';
     $output = '';
 
-	$output .= '<div class="qubely-insblock-for-gutenberg '.$attributes['class'].'">';
-    $output .= '<div class="qubely-insblock-row">';
-    
-        if($showProfile) {
-            $profile 	= $result->profile->data;
-            $output .= '<a href="https://instagram.com/'.$profile->username.'" target="_blank" class="qubelyinsblock-profile-container display-grid">';
-                $output .= '<div class="qubelyinsblock-profile-picture-container">';
-                    $output .= '<img class="qubelyinsblock-profile-picture" src="'.esc_attr($profile->profile_picture).'" alt="'.esc_attr($profile->full_name).'"/>';
-                $output .= '</div>';
-                $output .= '<div class="qubelyinsblock-bio-container">';
-                    $output .= '<h3>'.$profile->username.'</h3>';
-                    $output .= '<p>'.$profile->bio.'</p>';
-                $output .= '</div>';
-            $output .= '</a>';
-        }
+	$output .= '<div class="qubely-instagramfeed-wrap">';
+		$output .= '<div class="qubely-instagramfeed-row">';
+		
+			if($showProfile) {
+				$profile 	= $result->profile->data;
 
-        if( is_array($thumbs) ) {
-            foreach( $thumbs as $thumb ) {
+				$output .= '<div class="qubely-instagram-profile-bio-container">';
+					$output .= '<div class="qubely-instagram-profile-image">';
+						$output .= '<a href="https://instagram.com/'.$profile->username.'" target="_blank">';
+							$output .= '<img class="instagram-profile-image" src="'.esc_attr($profile->profile_picture).'" alt="'.esc_attr($profile->full_name).'"/>';
+						$output .= '</a>';
+					$output .= '</div>';
 
+					$output .= '<div class="qubely-instagram-profile-bio-info">';
+						$output .= '<div class="qubely-instagram-bio">';
+							$output .= '<a class="qubely-follow" href="https://instagram.com/'.$profile->username.'" target="_blank">';
+								$output .= '<h1 class="qubely-instagram-username">'.$profile->username.'</h1>';
+							$output .= '</a>';
 
-                $image = esc_attr($thumb->images->standard_resolution->url);
-                $output .= '<div class="instagram-image qubely-col-'.esc_attr($numberCols).'">';
-                    $output .= '<a class="qubely-insblock-image-wrapper '.$hasEqualImages.'" href="'.esc_attr($thumb->link).'" target="_blank">';
-						$output .= '<img class="qubely-instagram-image" key="'.esc_attr($thumb->id).'" src="'.$image.'" />';
-					
-						$output .= '<div class="image-overlay">';
-							$output .= '<li class="likes-count">';
-								$output .= '<span class="dashicons dashicons-heart"></span>';
-								$output .= '<span>'.$thumb->likes->count.'</span>';
-							$output .= '</li>';
-							$output .= '<li class="comments-count">';
-								$output .= '<span class="dashicons dashicons-admin-comments"></span>';
-								$output .= '<span>'.$thumb->comments->count.'</span>';
-							$output .= '</li>';
+							$output .= '<a class="qubely-follow" rel="nofollow" target="_blank" href="https://www.instagram.com/accounts/login/?next=%2F'.$profile->username.'%2Ffollowers%2F&source=followed_by_list">';
+								$output .= '<button class="qubely-instagram-follow" type="button">Follow</button>';
+							$output .= '</a>';
+
 						$output .= '</div>';
 
-					$output .= '</a>';
-                $output .= '</div>';
-            }
-        }
-    $output .= '</div>';
-    $output .= '</div>';
+						$output .= '<ul class="qubely-instagram-notifications">';
+							$output .= '<li>';
+								$output .= '<span class="qubely-instagram-post-count"><span class="qubely-post-number">'.$profile->counts->media.'</span> posts</span>';
+							$output .= '</li>';
+							$output .= '<li>';
+								$output .= '<a class="qubely-followers" href="https://www.instagram.com/accounts/login/?next=%2F'.$profile->username.'%2F&source=followed_by_list" target="_blank">';
+								$output .= '<span class="qubely-post-number" title="'.$profile->counts->follows.'">'.$profile->counts->follows.'</span> Followers</a>';
+							$output .= '</li>';
+							$output .= '<li>';
+								$output .= '<a class="qubely-followers" href="https://www.instagram.com/accounts/login/?next=%2F'.$profile->username.'%2F&source=follows_list" target="_blank">';
+								$output .= '<span class="qubely-post-number">'.$profile->counts->followed_by.'</span> Following</a>';
+							$output .= '</li>';
+						$output .= '</ul>';
+
+						$output .= '<div class="qubely-instagram-profile-name">';
+							$output .= '<span class="profile-name">'.$profile->full_name.'</span>';
+							$output .= '<span class="profile-bio">'.$profile->bio.'</span>';
+							$output .= '<span class="profile-bio">'.$profile->website.'</span>';
+						$output .= '</div>';
+					$output .= '</div>';
+				$output .= '</div>';
+			}
+
+			if( is_array($thumbs) ) {
+				foreach( $thumbs as $thumb ) {
+
+					$image = esc_attr($thumb->images->standard_resolution->url);
+
+					$output .= '<div class="qubely-instagram-image qubely-col-'.esc_attr($numberCols).' '.(($equalimagesize) ? 'equal-images' : '').'">';
+						$output .= '<div class="qubely-instagram-image-wrap qubely-post-img-'.esc_attr($imageAnimation).'">';
+							$output .= '<a class="qubely-insblock-image-wrapper '.$equalimagesize.'" href="'.esc_attr($thumb->link).'" target="_blank">';
+								$output .= '<img key="'.esc_attr($thumb->id).'" src="'.$image.'" />';
+								$output .= '<div class="qubely-image-overlay">';
+									$output .= '<ul>';
+										
+										if ($showCount) {
+											$output .= '<li class="qubely-listing">';
+												$output .= '<span class="dashicons dashicons-heart"></span>';
+												$output .= '<span class="qubely-count qubely-like-count">'.$thumb->likes->count.'</span>';
+											$output .= '</li>';
+											
+											$output .= '<li class="qubely-listing">';
+												$output .= '<span class="dashicons dashicons-admin-comments"></span>';
+												$output .= '<span class="qubely-count qubely-comments-count">'.$thumb->comments->count.'</span>';
+											$output .= '</li>';
+										}
+										
+										if ($showCaption == true && $thumb->caption != null) {
+											$output .= '<li class="qubely-caption">';
+												$output .= '<p class="caption-title">'.$thumb->caption->text.'</p>';
+											$output .= '</li>';
+										}
+										
+									$output .= '</ul>';
+								$output .= '</div>';
+							$output .= '</a>';
+						$output .= '</div>';
+					$output .= '</div>';
+				}
+			}
+		$output .= '</div>';
+	$output .= '</div>';
+
+	wp_reset_postdata();
 
 	return $output;
 }
