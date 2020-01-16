@@ -101,6 +101,7 @@
         .insblock-instagram-image-wrap {
             position: relative;
             overflow: hidden;
+            height: 330px;
             img {
                 transition: .3s;
             }
@@ -230,3 +231,19 @@
         }
     }
 } 
+
+.insblock-instagram-irow {
+    margin: -15px;
+}
+.insblock-instagramfeed-row  {
+    .insblock-instagram-image {
+        padding: 15px;
+    }
+    .insblock-instagram-image.has-equal-images {
+        .insblock-instagram-image-wrap img {
+            object-fit: cover;
+            height: 100%;
+            width: 100%;
+        }
+    } 
+}

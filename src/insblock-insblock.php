@@ -17,6 +17,7 @@ function insblock_register_block() {
 						'type' 		=> 'string',
 						'default' => ''
 				),
+				
 				'hasEqualImages' => array(
 					'type' 		=> 'boolean',
 					'default' => false
@@ -69,7 +70,7 @@ function insblock_render_callback( array $attributes ){
 			'class'       => '',
 		]
 	);
-	$token          = $attributes[ 'token' ]  ;
+	$token          = $attributes[ 'token' ]  ; 
 	$hasEqualImages = $attributes[ 'hasEqualImages' ] ? 'has-equal-images' : '';
 	$numberImages   = $attributes[ 'numberImages' ];
 	$numberCols     = $attributes[ 'numberCols' ];
@@ -144,9 +145,9 @@ function insblock_render_callback( array $attributes ){
 
 					$image = esc_attr($thumb->images->standard_resolution->url);
 
-					$output .= '<div class="insblock-instagram-image insblock-col-'.esc_attr($numberCols).' '.(($equalimagesize) ? 'equal-images' : '').'">';
-						$output .= '<div class="insblock-instagram-image-wrap insblock-post-img-'.esc_attr($imageAnimation).'">';
-							$output .= '<a class="insblock-insblock-image-wrapper '.$equalimagesize.'" href="'.esc_attr($thumb->link).'" target="_blank">';
+					$output .= '<div class="insblock-instagram-image insblock-col-'.esc_attr($numberCols).' '.(($hasEqualImages) ? 'equal-images' : '').'">';
+						$output .= '<div class="insblock-instagram-image-wrap">';
+							$output .= '<a class="insblock-insblock-image-wrapper '.$hasEqualImages.'" href="'.esc_attr($thumb->link).'" target="_blank">';
 								$output .= '<img key="'.esc_attr($thumb->id).'" src="'.$image.'" />';
 								$output .= '<div class="insblock-image-overlay">';
 									$output .= '<ul>';

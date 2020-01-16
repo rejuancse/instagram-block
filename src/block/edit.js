@@ -114,7 +114,7 @@ export default class InstagramEdit extends Component {
 				numberImages,
 				hasEqualImages,
 				thumbs,
-				gridGap,
+				// gridGap,
 				showProfile,
 				profile,
 			},
@@ -180,43 +180,44 @@ export default class InstagramEdit extends Component {
                         <div className="insblock-instagramfeed-row">
 
                             { profileImage }
+							<div className={`insblock-instagram-irow`}>
+								{ thumbs &&
+									thumbs.map( photo => {
+										return (
+											<div className={`insblock-instagram-image insblock-col-${numberCols} ${hasEqualImages ? 'has-equal-images' : ''}`} key={ photo.id } >  
+												<div className={`insblock-instagram-image-wrap`}>
+													<img src={ photo.images.standard_resolution.url } />
+													<div className="insblock-image-overlay">
+														<ul>
+															{photo.likes != null && 
+																<li className="insblock-listing">
+																	<span className="dashicons dashicons-heart"></span>
+																	<span className="insblock-count insblock-like-count">{photo.likes.count}</span>
+																</li>
+															}
+															{photo.comments != null && 
+																<li className="insblock-listing">
+																	<span className="dashicons dashicons-admin-comments"></span>
+																	<span className="insblock-count insblock-comments-count">{photo.comments.count}</span>
+																</li>
+															}
 
-                            { thumbs &&
-                                thumbs.map( photo => {
-                                    return (
-                                        <div className={`insblock-instagram-image insblock-col-${numberCols} ${hasEqualImages ? 'has-equal-images' : ''}`} key={ photo.id } >  
-											<div className={`insblock-instagram-image-wrap`}>
-												<img src={ photo.images.standard_resolution.url } />
-												<div className="insblock-image-overlay">
-													<ul>
-														{photo.likes != null && 
-															<li className="insblock-listing">
-																<span className="dashicons dashicons-heart"></span>
-																<span className="insblock-count insblock-like-count">{photo.likes.count}</span>
-															</li>
-														}
-														{photo.comments != null && 
-															<li className="insblock-listing">
-																<span className="dashicons dashicons-admin-comments"></span>
-																<span className="insblock-count insblock-comments-count">{photo.comments.count}</span>
-															</li>
-														}
-
-														{photo.caption != null && 
-															<li className="insblock-caption">
-																{photo.caption != null && 
-																	<p className="caption-title">{photo.caption.text}</p>
-																}
-															</li>
-														}
-														
-													</ul>
+															{photo.caption != null && 
+																<li className="insblock-caption">
+																	{photo.caption != null && 
+																		<p className="caption-title">{photo.caption.text}</p>
+																	}
+																</li>
+															}
+															
+														</ul>
+													</div>
 												</div>
 											</div>
-                                        </div>
-                                    );
-                                } ) 
-                            }
+										);
+									} ) 
+								}
+							</div>
                         </div>
                     </div>
 
@@ -253,7 +254,6 @@ export default class InstagramEdit extends Component {
 							step={ 1 }
 							label={ __( 'Columns' ) }
 						/>
-
 						<RangeControl
 							value={ numberImages }
 							onChange={ this.onChangeImages }
@@ -262,28 +262,24 @@ export default class InstagramEdit extends Component {
 							step={ 1 }
 							label={ __( 'Number of Images' ) }
 						/>
-
-						<RangeControl
+						{/* <RangeControl
 							value={ gridGap }
 							onChange={ gridGap => setAttributes( { gridGap } ) }
 							min={ 0 }
 							max={ 20 }
 							step={ 1 }
 							label={ __( 'Image spacing (px)' ) }
-						/>
-
+						/> */}
 						<ToggleControl
 							label={ __( 'Show profile?' ) }
 							checked={ showProfile }
 							onChange={ this.onChangeShowProfile }
 						/>
-
 						<ToggleControl
 							label={ __( 'Show equal sized images?' ) }
 							checked={ hasEqualImages }
 							onChange={ hasEqualImages => setAttributes( { hasEqualImages } ) }
 						/>
-
 					</PanelBody>
 				</InspectorControls>
                 
